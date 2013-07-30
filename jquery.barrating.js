@@ -30,7 +30,7 @@
 
                     $this.data('barrating', {
                         currentRatingValue:$this.val(), // initial rating based on the OPTION value
-                        currentRatingText:$('option:selected', $this).text()
+                        currentRatingText:$('option[selected="selected"]', $this).text()
                     });
 
                     $widget = $('<div />', { 'class':'bar-rating' }).insertAfter(this.elem);
@@ -93,6 +93,7 @@
                     }
 
                     $all.on(clickEvent, function (event) {
+                        if (!userOptions.enableUserInteraction) return;
                         var $a = $(this),
                             value,
                             text;
@@ -137,7 +138,7 @@
                     });
 
                     // attach mouseenter/mouseleave event handlers
-                    if (!hasTouch) {
+                    if (!hasTouch && userOptions.enableUserInteraction) {
 
                         $all.on({
                             mouseenter:function () {
@@ -220,6 +221,7 @@
         });
     };
     return $.fn.barrating.defaults = {
+        enableUserInteraction: true, // Enable user interaction
         showValues:false, // display rating values on the bars?
         showSelectedRating:true, // append a div with a rating to the widget?
         onSelect:function (value, text) {

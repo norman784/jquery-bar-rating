@@ -1,3 +1,7 @@
+1.0.3
+-----
+- added user interaction: by default enabled, allows the user to change rating value
+
 1.0.2
 -----
 - `.current-rating` div gets updated on mouseenter
